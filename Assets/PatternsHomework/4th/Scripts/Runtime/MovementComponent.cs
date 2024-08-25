@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace ThirdTask
+namespace FourthTask
 {
-    public class PlayerMovement : MonoBehaviour
+    public class MovementComponent : MonoBehaviour
     {
         [SerializeField, Range(0f, 10f)] private float _speed = 5f;
         

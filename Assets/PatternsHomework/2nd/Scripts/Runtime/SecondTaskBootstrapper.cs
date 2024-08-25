@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class SecondTaskBootstrapper : MonoBehaviour 
 {
-    private void Start() 
+    [SerializeField] private GameObject _playerPrefab;
+    private void Start()
     {
-        // TODO: Bootstrap scene
+        Instantiate<GameObject>(_playerPrefab);
     }
 }

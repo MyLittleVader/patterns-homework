@@ -10,6 +10,7 @@ namespace SecondTask
 
         public WorkState(NPCStateMachine stateMachine, NPCStateMachineData data, NPC npc) : base(stateMachine, data,
             npc) => _config = npc.Config.WorkConfig;
+        
         public override void Enter()
         {
             base.Enter();

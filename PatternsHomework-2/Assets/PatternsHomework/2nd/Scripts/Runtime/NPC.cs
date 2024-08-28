@@ -5,13 +5,12 @@ namespace SecondTask
     [RequireComponent(typeof(CharacterController))]
     public class NPC : MonoBehaviour
     {
-        private NPCConfig _config;
         private CharacterController _characterController;
         private NPCStateMachine _stateMachine;
 
         private bool isInit = false;
 
-        public NPCConfig Config => _config;  
+        public NPCConfig Config { get; private set; }
         public CharacterController CharacterController
         {
             get
@@ -25,7 +24,7 @@ namespace SecondTask
         
         public void Initialize(NPCConfig config)
         {
-            _config = config;
+            Config = config;
             
             _stateMachine = new NPCStateMachine(this);
             isInit = _stateMachine != null;

@@ -6,13 +6,13 @@ namespace SecondTask
     {
         protected readonly NPCStateMachine StateMachine;
         protected readonly NPCStateMachineData Data;
-        private readonly NPC _npc;
+        protected readonly NPC NPC;
         
         public NPCState(NPCStateMachine stateMachine, NPCStateMachineData data, NPC npc)
         {
             StateMachine = stateMachine;
             Data = data;
-            _npc = npc;
+            NPC = npc;
         }
 
         public virtual void Enter()

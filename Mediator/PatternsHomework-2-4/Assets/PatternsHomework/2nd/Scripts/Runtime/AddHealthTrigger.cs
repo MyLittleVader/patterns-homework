@@ -1,11 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AddHealthTrigger : MonoBehaviour
+namespace SecondTask
 {
-    private void OnTriggerEnter(Collider other)
+    public class AddHealthTrigger : MonoBehaviour
     {
-        Debug.Log("AddHealthTrigger");
+        [SerializeField, Range(0f, 100f)] private float _healAmount = 10f;
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            var playerState = other.GetComponentInParent<PlayerState>();
+            
+            if (playerState == null)
+                return;
+            
+            playerState.AddHealth(_healAmount);
+        }
     }
 }

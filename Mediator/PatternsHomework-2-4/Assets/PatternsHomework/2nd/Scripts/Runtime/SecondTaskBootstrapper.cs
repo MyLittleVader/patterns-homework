@@ -1,17 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SecondTask
 {
     public class SecondTaskBootstrapper : MonoBehaviour
     {
-        [SerializeField] private Player _playerPrefab;
+        [FormerlySerializedAs("_playerPrefab")] [SerializeField] private PlayerState playerStatePrefab;
 
         private void Start()
         {
-            if (_playerPrefab == null)
+            if (playerStatePrefab == null)
                 return;
             
-            var player = Instantiate(_playerPrefab);
+            var player = Instantiate(playerStatePrefab);
+            player.Initialize();
         }
     }
 }

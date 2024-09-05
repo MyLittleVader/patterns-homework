@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0020089962e91364695b7a970901eae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healAmount: 50
 --- !u!1 &997603113
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9c7e8a31ec41ea8032a4907b1a1a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 4573559023421180883, guid: e45535532940a9832bf0d74b38bba7b2, type: 3}
+  playerStatePrefab: {fileID: 4573559023421180883, guid: e45535532940a9832bf0d74b38bba7b2, type: 3}
 --- !u!1 &1917856534
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77816c88c7525d360a8c6ca762e59653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageAmount: 50
 --- !u!65 &2067345774
 BoxCollider:
   m_ObjectHideFlags: 0

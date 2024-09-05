@@ -1,9 +1,17 @@
 using UnityEngine;
 
-public class UpgradeLevelTrigger : MonoBehaviour
+namespace SecondTask
 {
-    private void OnTriggerEnter(Collider other)
+    public class UpgradeLevelTrigger : MonoBehaviour
     {
-        Debug.Log("UpgradeLevelTrigger");
+        private void OnTriggerEnter(Collider other)
+        {
+            var playerState = other.GetComponentInParent<PlayerState>();
+            
+            if (playerState == null)
+                return;
+            
+            playerState.UpgradeLevel();
+        }
     }
 }

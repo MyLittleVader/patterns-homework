@@ -9,7 +9,7 @@ namespace SecondTask
     {
         private List<ObservableAttribute> _attributes = new();
 
-        public void TryAddAttribute<T>(T attributeToAdd) where T : ObservableAttribute
+        public void AddAttribute<T>(T attributeToAdd) where T : ObservableAttribute
         {
             if (attributeToAdd == null)
                 throw new ArgumentNullException(nameof(attributeToAdd));
@@ -25,7 +25,7 @@ namespace SecondTask
             _attributes.Add(attributeToAdd);
         }
 
-        public void TryRemoveAttribute<T>() where T : ObservableAttribute
+        public void RemoveAttribute<T>() where T : ObservableAttribute
         {
             var attributeIndex = _attributes.FindIndex(attribute => attribute is T);
             
@@ -35,7 +35,7 @@ namespace SecondTask
             _attributes.RemoveAt(attributeIndex);
         }
 
-        public void TrySetAttribute<T>(float value) where T : ObservableAttribute
+        public void SetAttributeValue<T>(float value) where T : ObservableAttribute
         {
             var attribute = _attributes.FirstOrDefault(attribute => attribute is T);
             
@@ -45,7 +45,7 @@ namespace SecondTask
             attribute.SetValue(value);
         }
 
-        public float TryAddToAttribute<T>(float value) where T : ObservableAttribute
+        public float AddToAttributeValue<T>(float value) where T : ObservableAttribute
         {
             var attribute = _attributes.FirstOrDefault(attribute => attribute is T);
 
@@ -59,12 +59,12 @@ namespace SecondTask
             return attribute.GetValue();
         }
 
-        public float TryIncrementAttribute<T>() where T : ObservableAttribute
+        public float IncrementAttributeValue<T>() where T : ObservableAttribute
         {
-            return TryAddToAttribute<T>(1f);
+            return AddToAttributeValue<T>(1f);
         }
 
-        public float TryGetAttributeValue<T>() where T : ObservableAttribute
+        public float GetAttributeValue<T>() where T : ObservableAttribute
         {
             var attribute = _attributes.FirstOrDefault(attribute => attribute is T);
 
@@ -74,7 +74,7 @@ namespace SecondTask
             return attribute.GetValue();
         }
 
-        public void TrySubscribeToAttribute<T>(ObservableAttribute.OnAttributeValueChanged onChanged) 
+        public void SubscribeToAttributeChange<T>(ObservableAttribute.OnAttributeValueChanged onChanged) 
             where T : ObservableAttribute
         {
             ObservableAttribute attribute = _attributes.FirstOrDefault(attribute => attribute is T);
@@ -85,7 +85,7 @@ namespace SecondTask
             attribute.Subscribe(onChanged);
         }
         
-        public void TryUnsubscribeFromAttribute<T>(ObservableAttribute.OnAttributeValueChanged onChanged) 
+        public void UnsubscribeFromAttributeChange<T>(ObservableAttribute.OnAttributeValueChanged onChanged) 
             where T : ObservableAttribute
         {
             ObservableAttribute attribute = _attributes.FirstOrDefault(attribute => attribute is T);

@@ -40,36 +40,36 @@ namespace SecondTask
         {
             LevelAttribute levelAttribute =
                 new LevelAttribute(new ClampedAttribute(new Attribute(_startingLevel), 0f, _maxLevel));
-            _attributesManager.TryAddAttribute(levelAttribute);
+            _attributesManager.AddAttribute(levelAttribute);
             
             HealthAttribute healthAttribute =
                 new HealthAttribute(new ClampedAttribute(new Attribute(_maxHealth), 0f, _maxHealth));
-            _attributesManager.TryAddAttribute(healthAttribute);
+            _attributesManager.AddAttribute(healthAttribute);
             
-            _attributesManager.TrySubscribeToAttribute<LevelAttribute>(OnLevelChange);
-            _attributesManager.TrySubscribeToAttribute<HealthAttribute>(OnHealthChange);
+            _attributesManager.SubscribeToAttributeChange<LevelAttribute>(OnLevelChange);
+            _attributesManager.SubscribeToAttributeChange<HealthAttribute>(OnHealthChange);
         }
 
         private void InitializeUI()
         {
-            var currentLevel = _attributesManager.TryGetAttributeValue<LevelAttribute>();
-            var currentHealth = _attributesManager.TryGetAttributeValue<HealthAttribute>();
+            var currentLevel = _attributesManager.GetAttributeValue<LevelAttribute>();
+            var currentHealth = _attributesManager.GetAttributeValue<HealthAttribute>();
             
             _playerUI.Initialize(currentLevel, currentHealth, _maxHealth);
         }
         
         private void OnDestroy()
         {
-            _attributesManager.TryUnsubscribeFromAttribute<LevelAttribute>(OnLevelChange);
-            _attributesManager.TryUnsubscribeFromAttribute<HealthAttribute>(OnHealthChange);
+            _attributesManager.UnsubscribeFromAttributeChange<LevelAttribute>(OnLevelChange);
+            _attributesManager.UnsubscribeFromAttributeChange<HealthAttribute>(OnHealthChange);
         }
 
         public void Restart()
         {
             _movementComponent.transform.localPosition = Vector3.zero;
             
-            _attributesManager.TrySetAttribute<LevelAttribute>(_startingLevel);
-            _attributesManager.TrySetAttribute<HealthAttribute>(_maxHealth);
+            _attributesManager.SetAttributeValue<LevelAttribute>(_startingLevel);
+            _attributesManager.SetAttributeValue<HealthAttribute>(_maxHealth);
 
             _playerUI.HideRestartOption();
             
@@ -78,17 +78,17 @@ namespace SecondTask
 
         public void UpgradeLevel()
         {
-            _attributesManager.TryIncrementAttribute<LevelAttribute>();
+            _attributesManager.IncrementAttributeValue<LevelAttribute>();
         }
         
         public void AddHealth(float value)
         {
-            _attributesManager.TryAddToAttribute<HealthAttribute>(value);
+            _attributesManager.AddToAttributeValue<HealthAttribute>(value);
         }
 
         public void SubtractHealth(float value)
         {
-            _attributesManager.TryAddToAttribute<HealthAttribute>(-value);
+            _attributesManager.AddToAttributeValue<HealthAttribute>(-value);
         }
 
         private void OnLevelChange(float oldValue, float newValue)
